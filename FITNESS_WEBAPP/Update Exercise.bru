@@ -1,0 +1,31 @@
+meta {
+  name: Update Exercise
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8000/meso/0/1
+  body: json
+  auth: none
+}
+
+headers {
+  accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "actual_load": "90",
+    "actual_per": "0",
+    "actual_rpe": "6",
+    "location": 0,
+    "name": "Flat Bench Smith Machine Press",
+    "notes": "Make this clean and easy but still significant",
+    "reps": "10",
+    "rpe": "5-6",
+    "sets": "2",
+    "suggested_load": "80-90"
+  }
+}

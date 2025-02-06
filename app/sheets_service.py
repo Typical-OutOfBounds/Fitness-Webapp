@@ -88,20 +88,22 @@ class SheetsService:
             sheet = self.service.spreadsheets()
 
             start_row = 20 + 29 * day
-            end_row = 20 + 29 * day + 28
-            exercise_location = exercise.location + 7
+            end_row = 20 + 29 * day + 1
+            exercise_location = int(exercise.location) + 7
 
-            start_col = self.column_number_to_letter(12*(week) + 2) + 6
-            end_col = self.column_number_to_letter(12*(week+1) + 3) + 8
+            start_col = self.column_number_to_letter(12*(week) + 2 + 5)
+            end_col = self.column_number_to_letter(12*(week+1) + 2 + 6)
             range_name = f"{mesocycle}!{start_col}{start_row+exercise_location}:{end_col}{end_row+exercise_location}"
 
             values = [
                 [exercise.actual_load, exercise.actual_rpe]
             ]
 
+            print(range_name)
+
             result = (
                 sheet.values()
-                .update(spreadsheetId=self.spreadsheet_id, range=range_name, valueInputOption="USER_ENTERED", values=values)
+                .update(spreadsheetId=self.spreadsheet_id, range=range_name, valueInputOption="USER_ENTERED", body={"values": values})
                 .execute()
             )
             print(result)
