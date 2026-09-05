@@ -1,3 +1,4 @@
 Makefile
 credentials.json
 fitness-program-tracker-3ce5b98cf768.json
+*.pyc
